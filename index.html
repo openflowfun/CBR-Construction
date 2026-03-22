@@ -121,42 +121,28 @@ body.hovering #cur-ring{opacity:0.2}
 .trust-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);background:rgba(196,151,63,.05);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.7);font-weight:600}
 .trust-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-/* ─── PORTFOLIO ─── */
-#portfolio{padding:110px 0;background:var(--bg)}
-.portfolio-hd{max-width:1200px;margin:0 auto;padding:0 56px 48px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px}
-.portfolio-grid{max-width:1200px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.pj{position:relative;overflow:hidden;cursor:pointer;background:var(--bg2)}
-.pj-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1)}
-.pj:hover .pj-img{transform:scale(1.06)}
-.pj-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.88) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
-.pj:hover .pj-overlay{opacity:1}
-.pj-badge{display:inline-block;padding:3px 10px;background:var(--gold);color:#060504;font-size:.55rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.pj-title{font-family:'Nasalization','Inter',sans-serif;font-size:.88rem;color:#fff;letter-spacing:.05em}
-/* Grid layout */
-.pj:nth-child(1){grid-column:1/7;grid-row:1;min-height:320px}
-.pj:nth-child(2){grid-column:7/13;grid-row:1;min-height:320px}
-.pj:nth-child(3){grid-column:1/5;grid-row:2;min-height:240px}
-.pj:nth-child(4){grid-column:5/9;grid-row:2;min-height:240px}
-.pj:nth-child(5){grid-column:9/13;grid-row:2;min-height:240px}
-.pj:nth-child(6){grid-column:1/13;grid-row:3;min-height:220px}
-/* 3D tilt */
-.pj{transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;transform-style:preserve-3d}
-.portfolio-caption{text-align:center;margin-top:28px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
-
-/* ─── LIGHTBOX ─── */
-#lightbox{position:fixed;inset:0;z-index:2000;background:rgba(6,5,4,.96);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center}
-#lightbox.open{display:flex}
-#lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;box-shadow:0 0 80px rgba(0,0,0,.8)}
-.lb-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--txt2);font-size:2rem;cursor:pointer;transition:color .2s}
-.lb-close:hover{color:var(--gold-l)}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(196,151,63,.12);border:1px solid var(--border2);color:var(--gold-l);width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:background .25s}
-.lb-prev:hover,.lb-next:hover{background:rgba(196,151,63,.28)}
-.lb-prev{left:20px}.lb-next{right:20px}
-.lb-info{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center}
-.lb-info .lb-badge{display:inline-block;padding:3px 12px;background:var(--gold);color:#060504;font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.lb-info .lb-title{font-family:'Nasalization',sans-serif;font-size:.9rem;color:#fff;letter-spacing:.06em}
-
-/* ─── SERVICES ─── */
+/* ─/* PORTFOLIO SLIDESHOW */
+#portfolio{padding:100px 0;background:var(--bg)}
+.portfolio-hd{max-width:1200px;margin:0 auto;padding:0 56px 40px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.slideshow-wrap{position:relative;max-width:1200px;margin:0 auto;padding:0 56px}
+.slideshow{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--bg2)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;will-change:opacity}
+.slide.active{opacity:1;z-index:1}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05);transition:transform 6s linear}
+.slide.active img{transform:scale(1)}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.82) 0%,transparent 55%);z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 32px}
+.slide-badge{display:inline-block;padding:3px 10px;background:var(--gold);color:#060504;font-size:.52rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px;width:fit-content}
+.slide-title{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(1rem,2.2vw,1.5rem);color:#fff;letter-spacing:.04em}
+.sl-prev,.sl-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(6,5,4,.55);border:1px solid rgba(196,151,63,.35);color:var(--gold-l);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;font-size:1.1rem;backdrop-filter:blur(6px)}
+.sl-prev:hover,.sl-next:hover{background:rgba(196,151,63,.2);border-color:var(--gold-l)}
+.sl-prev{left:8px}.sl-next{right:8px}
+.sl-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.sl-dot{width:28px;height:2px;background:rgba(196,151,63,.2);cursor:pointer;transition:width .3s;position:relative;overflow:hidden}
+.sl-dot.active{width:44px}
+.sl-dot.active::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:var(--gold);animation:dotFill 5s linear forwards}
+@keyframes dotFill{to{width:100%}}
+.portfolio-caption{text-align:center;margin-top:18px;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+── SERVICES ─── */
 #services{position:relative;padding:110px 56px;overflow:hidden}
 #services::before{content:'';position:absolute;inset:0;background:url('Images/services-bg.jpg') center/cover no-repeat;filter:brightness(.18) saturate(.8);z-index:0}
 #services::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(196,151,63,.04) 0%,transparent 70%);z-index:0;pointer-events:none}
@@ -318,9 +304,6 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 
 /* TABLET 1024px */
 @media(max-width:1024px){
-  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
-  .pj:nth-child(1),.pj:nth-child(2),.pj:nth-child(3),
-  .pj:nth-child(4),.pj:nth-child(5),.pj:nth-child(6){grid-column:auto;grid-row:auto;min-height:220px}
   .proc-steps{grid-template-columns:repeat(2,1fr);gap:32px}
   .proc-steps::before{display:none}
   .proc-step{border:1px solid var(--border);padding:28px 20px;background:rgba(20,16,10,.5)}
@@ -374,10 +357,13 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 
   /* PORTFOLIO */
   #portfolio{padding:64px 0}
-  .portfolio-hd{padding:0 20px 30px;flex-direction:column;align-items:flex-start;gap:16px}
-  .portfolio-grid{padding:0 20px;grid-template-columns:1fr;gap:12px}
-  .pj{min-height:220px !important}
-  .pj-overlay{opacity:1}
+  .portfolio-hd{padding:0 16px 22px;flex-direction:column;align-items:flex-start;gap:12px}
+  .slideshow-wrap{padding:0 14px}
+  .slide-overlay{padding:16px 16px}
+  .sl-prev,.sl-next{width:36px;height:36px;font-size:.9rem}
+  .slideshow-wrap{padding:0 14px}
+  .slide-overlay{padding:18px 18px}
+  .sl-prev,.sl-next{width:36px;height:36px;font-size:.9rem}
 
   /* SERVICES */
   #services{padding:64px 20px}
@@ -435,8 +421,6 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   /* MODALS */
   .qm-card{padding:32px 22px;max-height:88vh}
   .qm-title{font-size:.95rem}
-  #lightbox img{max-width:95vw;max-height:80vh}
-  .lb-prev{left:8px}.lb-next{right:8px}
 
   /* BACK TO TOP */
   #btt{bottom:18px;right:14px;width:40px;height:40px}
@@ -632,25 +616,31 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
     </div>
     <a href="#contact" class="btn-outline rv d2" style="white-space:nowrap">Start Your Project &nbsp;&rarr;</a>
   </div>
-  <div class="portfolio-grid" id="pj-grid">
-    <div class="pj rv d1" data-title="Modern Kitchen Renovation" data-cat="Renovation"><img class="pj-img" src="Images/image_1.jpg" alt="Modern Renovation"/><div class="pj-overlay"><span class="pj-badge">Renovation</span><div class="pj-title">Modern Kitchen Renovation</div></div></div>
-    <div class="pj rv d2" data-title="Architectural New Build" data-cat="New Build"><img class="pj-img" src="Images/image_2.jpg" alt="Architectural Build"/><div class="pj-overlay"><span class="pj-badge">New Build</span><div class="pj-title">Architectural New Build</div></div></div>
-    <div class="pj rv d1" data-title="Contemporary Design Build" data-cat="Design &amp; Build"><img class="pj-img" src="Images/image_3.jpg" alt="Design Build"/><div class="pj-overlay"><span class="pj-badge">Design &amp; Build</span><div class="pj-title">Contemporary Design Build</div></div></div>
-    <div class="pj rv d2" data-title="Multi-Unit Development" data-cat="Multi-Unit"><img class="pj-img" src="Images/image_5.jpg" alt="Multi Unit"/><div class="pj-overlay"><span class="pj-badge">Multi-Unit</span><div class="pj-title">Multi-Unit Development</div></div></div>
-    <div class="pj rv d3" data-title="High-Standard New Build" data-cat="New Build"><img class="pj-img" src="Images/image_6.jpg" alt="New Build"/><div class="pj-overlay"><span class="pj-badge">New Build</span><div class="pj-title">High-Standard New Build</div></div></div>
-    <div class="pj rv d2" data-title="Full Home Renovation" data-cat="Renovation"><img class="pj-img" src="Images/image_8.jpg" alt="Renovation"/><div class="pj-overlay"><span class="pj-badge">Renovation</span><div class="pj-title">Full Home Renovation</div></div></div>
+  <div class="slideshow-wrap rv">
+    <div class="slideshow" id="slideshow">
+      <div class="slide active">
+        <img src="img1.jpg" alt="CBR Construction Project 1" loading="eager"/>
+        <div class="slide-overlay"><span class="slide-badge">New Build</span><div class="slide-title">Premium Residential Build</div></div>
+      </div>
+      <div class="slide">
+        <img src="img2.jpg" alt="CBR Construction Project 2" loading="lazy"/>
+        <div class="slide-overlay"><span class="slide-badge">Renovation</span><div class="slide-title">Modern Home Renovation</div></div>
+      </div>
+      <div class="slide">
+        <img src="img3.jpg" alt="CBR Construction Project 3" loading="lazy"/>
+        <div class="slide-overlay"><span class="slide-badge">Design &amp; Build</span><div class="slide-title">Architectural Design Build</div></div>
+      </div>
+    </div>
+    <button class="sl-prev" id="sl-prev" aria-label="Previous">&#8592;</button>
+    <button class="sl-next" id="sl-next" aria-label="Next">&#8594;</button>
+    <div class="sl-dots" id="sl-dots">
+      <div class="sl-dot active"></div>
+      <div class="sl-dot"></div>
+      <div class="sl-dot"></div>
+    </div>
   </div>
-  <p class="portfolio-caption rv">Real results for real clients across Christchurch &amp; Canterbury.</p>
+  <p class="portfolio-caption rv">Real results for real Christchurch clients.</p>
 </section>
-
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <button class="lb-close" onclick="closeLb()">&#x2715;</button>
-  <button class="lb-prev" onclick="lbMove(-1)">&#8592;</button>
-  <img id="lb-img" src="" alt=""/>
-  <button class="lb-next" onclick="lbMove(1)">&#8594;</button>
-  <div class="lb-info"><div class="lb-badge" id="lb-badge"></div><div class="lb-title" id="lb-title"></div></div>
-</div>
 
 <!-- SERVICES -->
 <section id="services">
@@ -1116,6 +1106,40 @@ async function submitModalForm(e){
       });
     });
   }
+})();
+
+// SLIDESHOW
+(function(){
+  var slides=document.querySelectorAll('#slideshow .slide');
+  var dots=document.querySelectorAll('#sl-dots .sl-dot');
+  var cur=0,timer=null,paused=false;
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    // Restart dot fill animation
+    dots.forEach(function(d){d.style.animation='none';d.offsetHeight;d.style.animation='';});
+  }
+  function next(){goTo(cur+1);}
+  function prev(){goTo(cur-1);}
+  function startTimer(){timer=setInterval(next,5000);}
+  function resetTimer(){clearInterval(timer);if(!paused)startTimer();}
+  document.getElementById('sl-next').addEventListener('click',function(){next();resetTimer();});
+  document.getElementById('sl-prev').addEventListener('click',function(){prev();resetTimer();});
+  dots.forEach(function(d,i){d.addEventListener('click',function(){goTo(i);resetTimer();});});
+  // Touch swipe
+  var tx=0;
+  document.getElementById('slideshow').addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  document.getElementById('slideshow').addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){dx<0?next():prev();resetTimer();}
+  },{passive:true});
+  // Pause on hover
+  document.getElementById('slideshow').addEventListener('mouseenter',function(){paused=true;clearInterval(timer);});
+  document.getElementById('slideshow').addEventListener('mouseleave',function(){paused=false;startTimer();});
+  startTimer();
 })();
 
 </script>
