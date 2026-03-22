@@ -339,8 +339,8 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   /* NAV */
   #nav{padding:0 18px;height:60px}
   #nav.scrolled{height:54px}
-  .nav-logo img{height:66px !important}
-  #nav.scrolled .nav-logo img{height:58px !important}
+  .nav-logo img{height:82px !important}
+  #nav.scrolled .nav-logo img{height:74px !important}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
 
@@ -351,7 +351,7 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   .hero-eyebrow-strip span{font-size:.52rem}
   .hero-sub{display:none}
   .typewriter-row{font-size:.66rem;letter-spacing:.12em;margin:14px 0 26px}
-  .hero-btns{flex-direction:column;align-items:center;gap:12px}
+  .hero-btns{flex-direction:column;align-items:center;gap:12px;margin-top:56px}
   .btn-primary,.btn-outline{width:min(290px,82vw);justify-content:center}
   .scroll-cue{display:none}
 
@@ -463,6 +463,31 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   footer{padding:40px 16px 20px}
   #btt{bottom:14px;right:12px}
 }
+/* Location pill - mobile only */
+.loc-pill{display:none}
+@media(max-width:768px){
+  .loc-pill{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 16px;
+    border:1px solid rgba(196,151,63,0.4);
+    background:rgba(6,5,4,0.55);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(237,232,220,0.8);
+    margin-bottom:0;
+  }
+  .loc-pill span.loc-icon{font-size:.85rem;line-height:1}
+}
+/* Force video autoplay - hide browser play overlay */
+#hero-video{pointer-events:none}
+#hero-video::-webkit-media-controls,
+#hero-video::-webkit-media-controls-panel,
+#hero-video::-webkit-media-controls-play-button,
+#hero-video::-webkit-media-controls-start-playback-button{
+  display:none !important;
+  -webkit-appearance:none;
+}
 </style>
 </head>
 <body>
@@ -530,6 +555,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
       <span>Quality Craftsmanship</span>
     </p>
     <div class="typewriter-row">Specialists in &rarr; <span id="tw">New Builds</span></div>
+    <div class="loc-pill"><span class="loc-icon">&#128205;</span>Christchurch, NZ</div>
     <div class="hero-btns">
       <a href="#" class="btn-primary magnetic" onclick="openModal();return false;">Get a Free Quote</a>
       <a href="#portfolio" class="btn-outline magnetic">View Our Work</a>
@@ -1060,6 +1086,21 @@ async function submitModalForm(e){
       });
     }
   });
+})();
+
+// Force hero video play on mobile
+(function(){
+  var v=document.getElementById('hero-video');
+  if(!v)return;
+  v.muted=true;
+  var p=v.play();
+  if(p!==undefined){
+    p.catch(function(){
+      ['touchstart','touchend','click'].forEach(function(ev){
+        document.addEventListener(ev,function(){ v.play(); },{once:true,passive:true});
+      });
+    });
+  }
 })();
 
 </script>
