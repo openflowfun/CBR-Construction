@@ -94,9 +94,8 @@ body.hovering #cur-ring{opacity:0.2}
 
 /* ─── STAT TICKER ─── */
 #ticker{background:rgba(6,5,4,0.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;position:absolute;bottom:0;left:0;right:0;z-index:3;width:100%}
-.ticker-track{display:flex;gap:0;animation:tickScroll 13s linear infinite}
-.ticker-track:hover{animation-play-state:paused}
-.tick-item{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:0 40px;border-right:1px solid var(--border)}
+.ticker-track{display:flex;gap:0;animation:tickScroll 18s linear infinite;width:max-content;will-change:transform}
+.tick-item{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:0 40px;border-right:1px solid var(--border);white-space:nowrap}
 .tick-num{font-family:'Nasalization','Inter',sans-serif;font-size:1.15rem;color:var(--gold-l)}
 .tick-lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
 @keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -345,13 +344,15 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   .hamburger{display:flex}
 
   /* HERO */
-  .hero-inner{padding:0 20px 80px}
+  .hero-inner{padding:90px 20px 24px;display:flex;flex-direction:column;min-height:calc(100svh - 54px)}
+  .loc-pill{margin-top:auto;margin-bottom:12px}
+  .hero-btns{margin-top:0}
   #hero-title{font-size:clamp(1.9rem,8.5vw,2.8rem);min-height:auto;line-height:1.15}
   .hero-eyebrow-strip{flex-wrap:wrap;gap:8px;margin-bottom:18px}
   .hero-eyebrow-strip span{font-size:.52rem}
   .hero-sub{display:none}
   .typewriter-row{font-size:.66rem;letter-spacing:.12em;margin:14px 0 26px}
-  .hero-btns{flex-direction:column;align-items:center;gap:12px;margin-top:56px}
+  .hero-btns{flex-direction:column;align-items:center;gap:12px}
   .btn-primary,.btn-outline{width:min(290px,82vw);justify-content:center}
   .scroll-cue{display:none}
 
@@ -609,10 +610,8 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
     <div class="about-copy rv-r">
       <div class="eyebrow-line"><span class="eyebrow">About Us</span></div>
       <h2>Built on Trust,<br/><em>Crafted with Pride</em></h2>
-      <p>CBR Construction is a building company based in Christchurch, New Zealand. We focus on delivering exceptional craftsmanship and quality with a personal touch &mdash; creating a perfect harmony between modern style, durability, and ease of living.</p>
-      <p>Led by <strong>Lalith Kumara Waduge</strong>, a certified professional builder and proud member of New Zealand Certified Builders (NZCB), CBR Construction brings a commitment to excellence that shows in every project we take on.</p>
-      <p>Our approach combines tried and trusted building techniques with modern design principles, ensuring every home we build stands the test of time &mdash; both in quality and in style.</p>
-      <p>At CBR Construction, we believe in clear communication and close collaboration with our clients from the first consultation through to the final handover. Your dream home is our priority.</p>
+      <p>CBR Construction is a Christchurch-based building company led by <strong>Lalith Kumara Waduge</strong>, a NZCB certified professional builder &mdash; committed to delivering exceptional craftsmanship and creating beautiful, enduring homes that blend modern style with lasting quality.</p>
+      <p>We combine trusted building techniques with modern design principles, working closely with our clients from first consultation through to final handover &mdash; because your dream home is our top priority.</p>
       <div class="trust-strip">
         <div class="trust-chip">NZCB Certified Member</div>
         <div class="trust-chip">Christchurch Local</div>
