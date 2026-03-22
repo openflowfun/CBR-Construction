@@ -290,12 +290,12 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 #btt:hover{background:var(--gold-l);transform:translateY(-3px)}
 
 /* ─── REVEAL ─── */
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.rv.vis{opacity:1;transform:none}
-.rv-l{opacity:0;transform:translateX(-30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.rv-l.vis{opacity:1;transform:none}
-.rv-r{opacity:0;transform:translateX(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.rv-r.vis{opacity:1;transform:none}
+.rv{transform:translateY(24px);transition:transform .8s cubic-bezier(.22,1,.36,1);}
+.rv.vis{transform:none}
+.rv-l{transform:translateX(-24px);transition:transform .8s cubic-bezier(.22,1,.36,1);}
+.rv-l.vis{transform:none}
+.rv-r{transform:translateX(24px);transition:transform .8s cubic-bezier(.22,1,.36,1);}
+.rv-r.vis{transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
 
@@ -427,6 +427,21 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 
   /* FORM */
   .form-row2{grid-template-columns:1fr}
+
+  .loc-pill{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 16px;
+    border:1px solid rgba(196,151,63,0.4);
+    background:rgba(6,5,4,0.55);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(237,232,220,0.8);
+    margin-bottom:0;
+    width:fit-content;
+    align-self:center;
+  }
+  .loc-pill span.loc-icon{font-size:.85rem;line-height:1}
 }
 
 /* MOBILE SMALL 480px */
@@ -451,22 +466,7 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 }
 /* Location pill - mobile only */
 .loc-pill{display:none}
-@media(max-width:768px){
-  .loc-pill{
-    display:inline-flex;align-items:center;gap:7px;
-    padding:7px 16px;
-    border:1px solid rgba(196,151,63,0.4);
-    background:rgba(6,5,4,0.55);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
-    color:rgba(237,232,220,0.8);
-    margin-bottom:0;
-    width:fit-content;
-    align-self:center;
-  }
-  .loc-pill span.loc-icon{font-size:.85rem;line-height:1}
-}
+
 /* Force video autoplay - hide browser play overlay */
 #hero-video{pointer-events:none}
 #hero-video::-webkit-media-controls,
@@ -580,7 +580,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
 <!-- ABOUT -->
 <section id="about">
   <div class="about-wrap">
-    <div class="about-media rv-l vis">
+    <div class="about-media rv-l">
       <div class="about-frame">
         <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="kitchen-vid.mp4"></video>
         <div class="about-badge">
@@ -592,7 +592,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
         </div>
       </div>
     </div>
-    <div class="about-copy rv-r vis">
+    <div class="about-copy rv-r">
       <div class="eyebrow-line"><span class="eyebrow">About Us</span></div>
       <h2>Built on Trust,<br/><em>Crafted with Pride</em></h2>
       <p>CBR Construction is a Christchurch-based building company led by <strong>Lalith Kumara Waduge</strong>, a NZCB certified professional builder &mdash; committed to delivering exceptional craftsmanship and creating beautiful, enduring homes that blend modern style with lasting quality.</p>
@@ -610,7 +610,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="portfolio-hd">
-    <div class="rv vis">
+    <div class="rv">
       <div class="eyebrow-line"><span class="eyebrow">Our Work</span></div>
       <h2 class="display" style="font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;line-height:1.15;">Featured <em style="color:var(--gold-l);font-style:normal;">Projects</em></h2>
     </div>
