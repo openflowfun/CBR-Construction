@@ -117,7 +117,7 @@ body.hovering #cur-ring{opacity:0.2}
 .about-copy p{font-size:.9rem;line-height:1.95;color:var(--txt2);margin-bottom:18px}
 .about-copy p strong{color:var(--gold-l);font-weight:600}
 .trust-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
-.trust-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);background:rgba(196,151,63,.05);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.7);font-weight:600}
+.trust-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);background:rgba(196,151,63,.05);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.7);font-weight:600;flex:1 1 calc(50% - 5px);min-width:0}
 .trust-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
 /* ─── PORTFOLIO ─── */
@@ -345,8 +345,8 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 
   /* HERO */
   .hero-inner{padding:90px 20px 24px;display:flex;flex-direction:column;min-height:calc(100svh - 54px)}
-  .loc-pill{margin-top:auto;margin-bottom:12px}
-  .hero-btns{margin-top:0}
+  .loc-pill{margin-top:auto;margin-bottom:0}
+  .hero-btns{margin-top:52px}
   #hero-title{font-size:clamp(1.9rem,8.5vw,2.8rem);min-height:auto;line-height:1.15}
   .hero-eyebrow-strip{flex-wrap:wrap;gap:8px;margin-bottom:18px}
   .hero-eyebrow-strip span{font-size:.52rem}
@@ -368,8 +368,8 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   .about-frame::before,.about-frame::after{display:none}
   .about-frame video{height:240px}
   .about-badge{padding:10px 14px}
-  .trust-strip{gap:8px}
-  .trust-chip{font-size:.58rem;padding:6px 12px}
+  .trust-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
+  .trust-chip{flex:unset;font-size:.58rem;padding:10px 12px;justify-content:flex-start}
 
   /* PORTFOLIO */
   #portfolio{padding:64px 0}
@@ -578,12 +578,10 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
     <div class="tick-item"><span class="tick-num">NZCB</span><span class="tick-lbl">Certified Member</span></div>
     <div class="tick-item"><span class="tick-num">100%</span><span class="tick-lbl">Client Satisfaction</span></div>
     <div class="tick-item"><span class="tick-num">CHC</span><span class="tick-lbl">Christchurch Based</span></div>
-    <div class="tick-item"><span class="tick-num">9</span><span class="tick-lbl">Services Offered</span></div>
     <div class="tick-item"><span class="tick-num">20+</span><span class="tick-lbl">Years Experience</span></div>
     <div class="tick-item"><span class="tick-num">NZCB</span><span class="tick-lbl">Certified Member</span></div>
     <div class="tick-item"><span class="tick-num">100%</span><span class="tick-lbl">Client Satisfaction</span></div>
     <div class="tick-item"><span class="tick-num">CHC</span><span class="tick-lbl">Christchurch Based</span></div>
-    <div class="tick-item"><span class="tick-num">9</span><span class="tick-lbl">Services Offered</span></div>
   </div>
 </div>
   <div class="scroll-cue">
@@ -597,7 +595,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
   <div class="about-wrap">
     <div class="about-media rv-l">
       <div class="about-frame">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="kitchen vid.mp4"></video>
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="housee.mp4"></video>
         <div class="about-badge">
           <div class="ab-check">&#10003;</div>
           <div class="ab-text">
