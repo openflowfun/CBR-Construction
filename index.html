@@ -544,7 +544,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
 
 <!-- HERO -->
 <section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" src="kitchen vid.mp4"></video>
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" src="kitchen-vid.mp4"></video>
   <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
@@ -597,7 +597,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
   <div class="about-wrap">
     <div class="about-media rv-l">
       <div class="about-frame">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="housee.mp4"></video>
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="kitchen-vid.mp4"></video>
         <div class="about-badge">
           <div class="ab-check">&#10003;</div>
           <div class="ab-text">
@@ -1028,7 +1028,16 @@ document.querySelectorAll('[data-target]').forEach(el=>cntObs.observe(el));
 
 // ── ABOUT VIDEO OBSERVER ──
 const avid=document.getElementById('about-vid');
-if(avid){new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)avid.play().catch(()=>{});else avid.pause();});},{threshold:.3}).observe(avid);}
+if(avid){
+  avid.muted=true;
+  avid.load();
+  new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){avid.muted=true;avid.play().catch(()=>{});}
+      else avid.pause();
+    });
+  },{threshold:.1}).observe(avid);
+}
 
 // ── FAQ ──
 function toggleFaq(btn){
