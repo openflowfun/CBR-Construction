@@ -116,8 +116,8 @@ body.hovering #cur-ring{opacity:0.2}
 .about-copy h2 em{color:var(--gold-l);font-style:normal}
 .about-copy p{font-size:.9rem;line-height:1.95;color:var(--txt2);margin-bottom:18px}
 .about-copy p strong{color:var(--gold-l);font-weight:600}
-.trust-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
-.trust-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);background:rgba(196,151,63,.05);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.7);font-weight:600;flex:1 1 calc(50% - 5px);min-width:0}
+.trust-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px}
+.trust-chip{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);background:rgba(196,151,63,.05);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,220,.7);font-weight:600}
 .trust-chip::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
 /* ─── PORTFOLIO ─── */
@@ -345,7 +345,7 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 
   /* HERO */
   .hero-inner{padding:90px 20px 24px;display:flex;flex-direction:column;min-height:calc(100svh - 54px)}
-  .loc-pill{margin-top:auto;margin-bottom:0}
+  .loc-pill{margin-top:auto;margin-bottom:0;align-self:center;width:fit-content}
   .hero-btns{margin-top:52px}
   #hero-title{font-size:clamp(1.9rem,8.5vw,2.8rem);min-height:auto;line-height:1.15}
   .hero-eyebrow-strip{flex-wrap:wrap;gap:8px;margin-bottom:18px}
@@ -477,6 +477,8 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
     font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
     color:rgba(237,232,220,0.8);
     margin-bottom:0;
+    width:fit-content;
+    align-self:center;
   }
   .loc-pill span.loc-icon{font-size:.85rem;line-height:1}
 }
