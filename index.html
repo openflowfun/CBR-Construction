@@ -361,8 +361,6 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   .slideshow-wrap{padding:0 14px}
   .slide-overlay{padding:16px 16px}
   .sl-prev,.sl-next{width:36px;height:36px;font-size:.9rem}
-  .slideshow-wrap{padding:0 14px}
-  .slide-overlay{padding:18px 18px}
   .sl-prev,.sl-next{width:36px;height:36px;font-size:.9rem}
 
   /* SERVICES */
@@ -464,8 +462,7 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
   footer{padding:40px 16px 20px}
   #btt{bottom:14px;right:12px}
 }
-/* Location pill - mobile only */
-.loc-pill{display:none}
+.loc-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border:1px solid rgba(196,151,63,0.4);background:rgba(6,5,4,0.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,232,220,0.8);width:fit-content;border-radius:2px}
 
 /* Force video autoplay - hide browser play overlay */
 #hero-video{pointer-events:none}
@@ -582,7 +579,7 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
   <div class="about-wrap">
     <div class="about-media rv-l">
       <div class="about-frame">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="kitchen-vid.mp4"></video>
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="about-vid" src="kitchen-vid.mp4" style="position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block"></video>
         <div class="about-badge">
           <div class="ab-check">&#10003;</div>
           <div class="ab-text">
@@ -957,47 +954,6 @@ setInterval(()=>{
   frame();
 })();
 
-// ── PORTFOLIO 3D TILT + LIGHTBOX ──
-const pjData=[
-  {src:'Images/image_1.jpg',cat:'Renovation',title:'Modern Kitchen Renovation'},
-  {src:'Images/image_2.jpg',cat:'New Build',title:'Architectural New Build'},
-  {src:'Images/image_3.jpg',cat:'Design & Build',title:'Contemporary Design Build'},
-  {src:'Images/image_5.jpg',cat:'Multi-Unit',title:'Multi-Unit Development'},
-  {src:'Images/image_6.jpg',cat:'New Build',title:'High-Standard New Build'},
-  {src:'Images/image_8.jpg',cat:'Renovation',title:'Full Home Renovation'},
-];
-let lbIdx=0;
-document.querySelectorAll('.pj').forEach((card,i)=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale(1.02)';
-  });
-  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale(1)';});
-  card.addEventListener('click',()=>openLb(i));
-});
-function openLb(i){
-  lbIdx=i;const d=pjData[i];
-  document.getElementById('lb-img').src=d.src;
-  document.getElementById('lb-badge').textContent=d.cat;
-  document.getElementById('lb-title').textContent=d.title;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLb(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
-function lbMove(dir){openLb((lbIdx+dir+pjData.length)%pjData.length);}
-document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLb();});
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('lightbox').classList.contains('open')){
-    if(e.key==='Escape')closeLb();
-    if(e.key==='ArrowLeft')lbMove(-1);
-    if(e.key==='ArrowRight')lbMove(1);
-  }
-  if(e.key==='Escape')closeModal();
-});
-
-// ── FLIP CARDS (click = toggle on mobile) ──
-document.querySelectorAll('.fc').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('open')));
-
 // ── SCROLL REVEAL ──
 const rvObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvObs.unobserve(e.target);}});
@@ -1114,33 +1070,37 @@ async function submitModalForm(e){
 (function(){
   var slides=document.querySelectorAll('#slideshow .slide');
   var dots=document.querySelectorAll('#sl-dots .sl-dot');
-  var cur=0,timer=null,paused=false;
+  if(!slides.length||!dots.length)return;
+  var cur=0,timer=null;
   function goTo(n){
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
     cur=(n+slides.length)%slides.length;
     slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
-    // Restart dot fill animation
-    dots.forEach(function(d){d.style.animation='none';d.offsetHeight;d.style.animation='';});
+    // Restart dot fill animation by toggling active class
+    var d=dots[cur];
+    d.classList.remove('active');
+    void d.offsetWidth;
+    d.classList.add('active');
   }
   function next(){goTo(cur+1);}
   function prev(){goTo(cur-1);}
-  function startTimer(){timer=setInterval(next,5000);}
-  function resetTimer(){clearInterval(timer);if(!paused)startTimer();}
-  document.getElementById('sl-next').addEventListener('click',function(){next();resetTimer();});
-  document.getElementById('sl-prev').addEventListener('click',function(){prev();resetTimer();});
-  dots.forEach(function(d,i){d.addEventListener('click',function(){goTo(i);resetTimer();});});
+  function startTimer(){clearInterval(timer);timer=setInterval(next,5000);}
+  var btnNext=document.getElementById('sl-next');
+  var btnPrev=document.getElementById('sl-prev');
+  if(btnNext)btnNext.addEventListener('click',function(){next();startTimer();});
+  if(btnPrev)btnPrev.addEventListener('click',function(){prev();startTimer();});
+  dots.forEach(function(d,i){d.addEventListener('click',function(){goTo(i);startTimer();});});
   // Touch swipe
   var tx=0;
-  document.getElementById('slideshow').addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
-  document.getElementById('slideshow').addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-tx;
-    if(Math.abs(dx)>40){dx<0?next():prev();resetTimer();}
-  },{passive:true});
-  // Pause on hover
-  document.getElementById('slideshow').addEventListener('mouseenter',function(){paused=true;clearInterval(timer);});
-  document.getElementById('slideshow').addEventListener('mouseleave',function(){paused=false;startTimer();});
+  var sw=document.getElementById('slideshow');
+  if(sw){
+    sw.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+    sw.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-tx;
+      if(Math.abs(dx)>40){dx<0?next():prev();startTimer();}
+    },{passive:true});
+  }
   startTimer();
 })();
 
