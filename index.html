@@ -93,8 +93,8 @@ body.hovering #cur-ring{opacity:0.2}
 @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
 
 /* ─── STAT TICKER ─── */
-#ticker{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden}
-.ticker-track{display:flex;gap:0;animation:tickScroll 22s linear infinite}
+#ticker{background:rgba(6,5,4,0.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;position:absolute;bottom:0;left:0;right:0;z-index:3;width:100%}
+.ticker-track{display:flex;gap:0;animation:tickScroll 13s linear infinite}
 .ticker-track:hover{animation-play-state:paused}
 .tick-item{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:0 40px;border-right:1px solid var(--border)}
 .tick-num{font-family:'Nasalization','Inter',sans-serif;font-size:1.15rem;color:var(--gold-l)}
@@ -491,7 +491,16 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 </style>
 </head>
 <body>
-<script>if(history.scrollRestoration){history.scrollRestoration="manual";}window.scrollTo(0,0);</script>
+<script>
+if(history.scrollRestoration){history.scrollRestoration='manual';}
+window.scrollTo(0,0);
+window.addEventListener('pageshow',function(e){
+  if(e.persisted||performance.navigation&&performance.navigation.type===2){
+    window.scrollTo(0,0);
+  }
+});
+document.addEventListener('DOMContentLoaded',function(){window.scrollTo(0,0);});
+</script>
 
 <!-- SCROLL PROGRESS -->
 <div id="progress-bar"></div>
@@ -561,29 +570,26 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNAAAANQCAYAAADpJZKzAAEAAElEQVR4nO
       <a href="#portfolio" class="btn-outline magnetic">View Our Work</a>
     </div>
   </div>
-  <div class="scroll-cue">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- STAT TICKER -->
+  <!-- STAT TICKER -->
 <div id="ticker">
   <div class="ticker-track" id="ticker-track">
-    <div class="tick-item"><span class="tick-num">5+</span><span class="tick-lbl">Years Experience</span></div>
-    <div class="tick-item"><span class="tick-num">50+</span><span class="tick-lbl">Projects Completed</span></div>
+    <div class="tick-item"><span class="tick-num">20+</span><span class="tick-lbl">Years Experience</span></div>
     <div class="tick-item"><span class="tick-num">NZCB</span><span class="tick-lbl">Certified Member</span></div>
     <div class="tick-item"><span class="tick-num">100%</span><span class="tick-lbl">Client Satisfaction</span></div>
     <div class="tick-item"><span class="tick-num">CHC</span><span class="tick-lbl">Christchurch Based</span></div>
     <div class="tick-item"><span class="tick-num">9</span><span class="tick-lbl">Services Offered</span></div>
-    <div class="tick-item"><span class="tick-num">5+</span><span class="tick-lbl">Years Experience</span></div>
-    <div class="tick-item"><span class="tick-num">50+</span><span class="tick-lbl">Projects Completed</span></div>
+    <div class="tick-item"><span class="tick-num">20+</span><span class="tick-lbl">Years Experience</span></div>
     <div class="tick-item"><span class="tick-num">NZCB</span><span class="tick-lbl">Certified Member</span></div>
     <div class="tick-item"><span class="tick-num">100%</span><span class="tick-lbl">Client Satisfaction</span></div>
     <div class="tick-item"><span class="tick-num">CHC</span><span class="tick-lbl">Christchurch Based</span></div>
     <div class="tick-item"><span class="tick-num">9</span><span class="tick-lbl">Services Offered</span></div>
   </div>
 </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
