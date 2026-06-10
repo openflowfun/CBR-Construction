@@ -778,7 +778,8 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <!-- HERO -->
 <section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="">
+    <source src="kitchen-vid.mp4" type="video/mp4">
     <source src="https://cdn.jsdelivr.net/gh/openflowfun/CBR-Construction@main/kitchen-vid.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -1384,11 +1385,21 @@ slTimer=setInterval(()=>slGo((slIdx+1)%slides.length),5000);
   var v=document.getElementById('hero-video');
   if(!v)return;
   v.muted=true;
-  var tryPlay=function(){v.muted=true;var p=v.play();if(p)p.catch(function(){});};
+  var played=false;
+  var tryPlay=function(){
+    if(played)return;
+    v.muted=true;
+    var p=v.play();
+    if(p)p.then(function(){played=true;}).catch(function(){});
+  };
   v.addEventListener('canplay',tryPlay);
   v.addEventListener('loadedmetadata',tryPlay);
-  setTimeout(tryPlay,500);
-  document.addEventListener('touchstart',function once(){tryPlay();document.removeEventListener('touchstart',once);},{once:true,passive:true});
+  setTimeout(tryPlay,300);
+  setTimeout(tryPlay,1000);
+  // Interaction fallback for strict browsers (Brave, Safari)
+  ['click','scroll','keydown','touchstart','mousemove'].forEach(function(evt){
+    document.addEventListener(evt,function once(){tryPlay();document.removeEventListener(evt,once);},{once:true,passive:true});
+  });
 })();
 
 // ── NAV + PROGRESS + BTT ───────────────────────────────────────────────────
