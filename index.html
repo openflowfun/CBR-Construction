@@ -96,8 +96,8 @@ body.hovering #cur-ring{opacity:0.2}
 
 /* ─── HERO ─── */
 #hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#0f0d0a 0%,#1a1408 50%,#0f0d0a 100%)}
-#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(6,5,4,.55) 0%,rgba(6,5,4,.25) 45%,rgba(6,5,4,.8) 100%)}
+#hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom,rgba(6,5,4,.45) 0%,rgba(6,5,4,.15) 45%,rgba(6,5,4,.75) 100%)}
 .hero-inner{position:relative;z-index:3;text-align:center;padding:20px 24px 0;max-width:1100px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:calc(100svh - 165px)}
 .hero-title-wrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;}
 .hero-eyebrow-strip{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:28px}
@@ -778,10 +778,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <!-- HERO -->
 <section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="">
-    <source src="kitchen-vid.mp4" type="video/mp4">
-    <source src="https://cdn.jsdelivr.net/gh/openflowfun/CBR-Construction@main/kitchen-vid.mp4" type="video/mp4">
-  </video>
+  <video id="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" src="kitchen-vid.mp4"></video>
   <div class="hero-overlay"></div>
   <div class="loc-pill loc-pill-hero"><span class="loc-icon">&#127475;&#127487;</span>Canterbury, NZ</div>
   <div class="hero-inner">
