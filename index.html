@@ -59,7 +59,7 @@ body.hovering #cur-ring{opacity:0.2}
 .eyebrow-line::before,.eyebrow-line::after{content:'';display:block;height:1px;width:32px;background:var(--gold);opacity:.5}
 
 /* ─── BUTTONS ─── */
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:#060504;font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;position:relative;overflow:hidden;transition:background .25s,transform .2s}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;position:relative;overflow:hidden;transition:background .25s,transform .2s}
 .btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);transform:translateX(-100%);transition:transform .5s}
 .btn-primary:hover::after{transform:translateX(100%)}
 .btn-primary:hover{background:var(--gold-l);transform:translateY(-2px)}
@@ -78,8 +78,8 @@ body.hovering #cur-ring{opacity:0.2}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold-l);transition:width .3s}
 .nav-links a:hover{color:var(--gold-l)}
 .nav-links a:hover::after{width:100%}
-.nav-cta{font-size:.63rem;letter-spacing:.18em;font-weight:800;text-transform:uppercase;text-decoration:none;color:#060504;background:var(--gold);padding:10px 22px;transition:background .25s}
-.nav-cta:hover{background:var(--gold-l)}
+.nav-cta{font-size:.63rem;letter-spacing:.18em;font-weight:800;text-transform:uppercase;text-decoration:none;color:#fff;background:var(--gold);padding:10px 22px;transition:background .25s}
+.nav-cta:hover{background:var(--gold-l);color:#fff}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .hamburger span{display:block;width:24px;height:1.5px;background:var(--txt);transition:transform .3s,opacity .3s}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -159,7 +159,7 @@ body.hovering #cur-ring{opacity:0.2}
 .slide.active{opacity:1;z-index:1}
 .slide img{width:100%;height:100%;object-fit:cover;display:block}
 
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.82) 0%,transparent 55%);z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 32px}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,4,.82) 0%,transparent 55%);z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:20px 32px 28px}
 .slide-badge{display:inline-block;padding:3px 10px;background:var(--gold);color:#060504;font-size:.52rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px;width:fit-content}
 .slide-title{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(1rem,2.2vw,1.5rem);color:#fff;letter-spacing:.04em}
 .sl-prev,.sl-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(6,5,4,.55);border:1px solid rgba(196,151,63,.35);color:var(--gold-l);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;font-size:1.1rem;backdrop-filter:blur(6px)}
@@ -307,6 +307,8 @@ footer{padding:64px 56px 28px;background:var(--bg);border-top:1px solid var(--bo
 .foot-copy{font-size:.68rem;letter-spacing:.07em;color:var(--txt3)}
 .foot-credit{font-size:.65rem;color:var(--txt3);letter-spacing:.04em}
 .foot-credit strong{color:var(--gold-l);font-weight:700}
+.openflow-text{font-weight:800;font-size:1.2em;background:linear-gradient(90deg,#2563ff,#00e5c8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;font-style:normal}
+.foot-copy{font-size:.65rem;font-weight:700;color:var(--gold);letter-spacing:.04em}
 .foot-mobile-brand{display:none}
 
 /* ─── QUOTE MODAL ─── */
@@ -917,10 +919,12 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="slide proj-gallery" onclick="lbOpen('gates')" style="cursor:pointer">
         <img src="Images/rolleston-gate-fence1.jpg" alt="Rolleston Gate &amp; Fence"/>
         <div class="slide-overlay">
-          <span class="slide-badge" style="background:#b8860b">Gate &amp; Fence</span>
-          <span class="slide-badge" style="background:var(--gold);color:#060504;margin-left:6px">Most Recent</span>
-          <div class="slide-title">Rolleston - Gate &amp; Fence</div>
-          <div class="slide-view-hint">&#128247; Click to see full project</div>
+          <div><span class="slide-badge" style="background:var(--gold);color:#060504">&#9733; Most Recent Project</span></div>
+          <div>
+            <span class="slide-badge" style="background:#b8860b">Gate &amp; Fence</span>
+            <div class="slide-title">Rolleston - Gate &amp; Fence</div>
+            <div class="slide-view-hint">&#128247; Click to see full project</div>
+          </div>
         </div>
       </div>
 
@@ -1271,8 +1275,8 @@ document.addEventListener('DOMContentLoaded',function(){
     <p class="foot-tagline">Building Canterbury Dreams with Trust and Precision.<br/>NZCB certified and proudly local.</p>
   </div>
   <div class="foot-bottom">
-    <p class="foot-copy">&copy; 2026 CBR Construction Ltd. All rights reserved. Canterbury, New Zealand.</p>
-    <p class="foot-credit">Built by <a href="https://openflow.fun" target="_blank" rel="noopener" style="color:var(--gold-l);text-decoration:none"><strong>OpenFlow</strong></a> &middot; Growing Brands Digitally</p>
+    <p class="foot-copy"><strong>&copy; 2026 CBR Construction Ltd. All rights reserved. Canterbury, New Zealand.</strong></p>
+    <p class="foot-credit"><strong>Built by <a href="https://openflow.fun" target="_blank" rel="noopener" class="openflow-text">openflow</a> &middot; Growing Brands Digitally</strong></p>
   </div>
 </footer>
 
