@@ -883,18 +883,8 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="slideshow-wrap">
     <div class="slideshow" id="slideshow">
 
-      <!-- 1. Rolleston - Gate & Fence -->
-      <div class="slide active proj-gallery" onclick="lbOpen('gates')" style="cursor:pointer">
-        <img src="Images/rolleston-gate-fence1.jpg" alt="Rolleston Gate &amp; Fence"/>
-        <div class="slide-overlay">
-          <span class="slide-badge" style="background:#b8860b">Gate &amp; Fence</span>
-          <div class="slide-title">Rolleston - Gate &amp; Fence</div>
-          <div class="slide-view-hint">&#128247; Click to see full project</div>
-        </div>
-      </div>
-
-      <!-- 2. Papanui - Home Renovation -->
-      <div class="slide proj-gallery" onclick="lbOpen('papanui')" style="cursor:pointer">
+      <!-- 1. Papanui - Home Renovation -->
+      <div class="slide active proj-gallery" onclick="lbOpen('papanui')" style="cursor:pointer">
         <img src="Images/papanui-kitchen1.jpg" alt="Papanui Home Renovation"/>
         <div class="slide-overlay">
           <span class="slide-badge">Renovation</span>
@@ -903,16 +893,7 @@ document.addEventListener('DOMContentLoaded',function(){
         </div>
       </div>
 
-      <!-- 3. Rolleston - Modern Timber Fencing -->
-      <div class="slide">
-        <img src="Images/rolleston-modern-fencing.jpg" alt="Rolleston Timber Fencing"/>
-        <div class="slide-overlay">
-          <span class="slide-badge">Fencing</span>
-          <div class="slide-title">Rolleston - Modern Timber Fencing</div>
-        </div>
-      </div>
-
-      <!-- 4. Sydenham - Home Renovation -->
+      <!-- 2. Sydenham - Home Renovation -->
       <div class="slide proj-gallery" onclick="lbOpen('sydenham')" style="cursor:pointer">
         <img src="Images/sydenham-kitchen1.jpg" alt="Sydenham Home Renovation"/>
         <div class="slide-overlay">
@@ -922,13 +903,33 @@ document.addEventListener('DOMContentLoaded',function(){
         </div>
       </div>
 
-      <!-- 5. Rolleston - Outdoor Deck -->
+      <!-- 3. Rolleston - Outdoor Deck -->
       <div class="slide proj-gallery" onclick="lbOpen('decks')" style="cursor:pointer">
         <img src="Images/rolleston-outdoor-deck1.jpg" alt="Rolleston Outdoor Deck"/>
         <div class="slide-overlay">
           <span class="slide-badge">Decks</span>
           <div class="slide-title">Rolleston - Outdoor Deck</div>
           <div class="slide-view-hint">&#128247; Click to see full project</div>
+        </div>
+      </div>
+
+      <!-- 4. Rolleston - Gate & Fence (Most Recent) -->
+      <div class="slide proj-gallery" onclick="lbOpen('gates')" style="cursor:pointer">
+        <img src="Images/rolleston-gate-fence1.jpg" alt="Rolleston Gate &amp; Fence"/>
+        <div class="slide-overlay">
+          <span class="slide-badge" style="background:#b8860b">Gate &amp; Fence</span>
+          <span class="slide-badge" style="background:var(--gold);color:#060504;margin-left:6px">Most Recent</span>
+          <div class="slide-title">Rolleston - Gate &amp; Fence</div>
+          <div class="slide-view-hint">&#128247; Click to see full project</div>
+        </div>
+      </div>
+
+      <!-- 5. Rolleston - Modern Timber Fencing -->
+      <div class="slide">
+        <img src="Images/rolleston-modern-fencing.jpg" alt="Rolleston Timber Fencing"/>
+        <div class="slide-overlay">
+          <span class="slide-badge">Fencing</span>
+          <div class="slide-title">Rolleston - Modern Timber Fencing</div>
         </div>
       </div>
 
@@ -1377,6 +1378,9 @@ slBuild();
 slides.forEach((s,i)=>s.classList.toggle('active',i===0));
 slIdx=0;
 slTimer=setInterval(()=>slGo((slIdx+1)%slides.length),5000);
+
+// ── RESET GALLERY TO SLIDE 1 ON SECTION ENTER ─────────────────────────────
+document.querySelectorAll('a[href="#portfolio"]').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>slGo(0),50)));
 
 // ── SWIPE SUPPORT ──────────────────────────────────────────────────────────
 (function(){
